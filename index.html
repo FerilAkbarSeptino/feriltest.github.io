@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spoon Performance - JDM Parts & Engineering</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto+Condensed:wght@700&display=swap');
+
+        :root {
+            --spoon-blue: #00529B;
+            --spoon-yellow: #FFD700;
+            --racing-white: #F8F9FA;
+            --carbon-grey: #212529;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--racing-white);
+            color: var(--carbon-grey);
+        }
+
+        .jdm-font {
+            font-family: 'Roboto Condensed', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .bg-spoon-blue { background-color: var(--spoon-blue); }
+        .text-spoon-blue { color: var(--spoon-blue); }
+        .bg-spoon-yellow { background-color: var(--spoon-yellow); }
+        .border-spoon-blue { border-color: var(--spoon-blue); }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: var(--spoon-blue); }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="bg-white border-b-4 border-spoon-blue sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <span class="text-3xl jdm-font italic font-black text-spoon-blue">SPOON</span>
+                        <span class="ml-2 px-2 py-1 bg-spoon-yellow text-spoon-blue font-bold text-xs rounded">SPORTS</span>
+                    </div>
+                    <div class="hidden md:ml-10 md:flex space-x-8">
+                        <a href="#" onclick="showPage('home')" class="text-carbon-grey hover:text-spoon-blue font-bold text-sm uppercase tracking-widest">Beranda</a>
+                        <a href="#" onclick="showPage('catalog')" class="text-carbon-grey hover:text-spoon-blue font-bold text-sm uppercase tracking-widest">Katalog</a>
+                        <a href="#" class="text-carbon-grey hover:text-spoon-blue font-bold text-sm uppercase tracking-widest">Teknis</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 text-carbon-grey hover:text-spoon-blue relative" onclick="showPage('cart')">
+                        <i class="fa-solid fa-cart-shopping text-xl"></i>
+                        <span id="cart-count" class="absolute top-0 right-0 bg-spoon-yellow text-spoon-blue text-[10px] font-bold rounded-full h-5 w-5 flex items-center justify-center border-2 border-white">0</span>
+                    </button>
+                    <button class="bg-spoon-blue text-white px-6 py-2 rounded-sm font-bold text-xs uppercase hover:bg-opacity-90 transition" onclick="showPage('login')">Masuk</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main id="main-content">
+
+        <!-- Home Page -->
+        <section id="page-home" class="page-content">
+            <div class="hero-gradient h-[70vh] flex items-center justify-center text-center px-4">
+                <div>
+                    <h1 class="text-white text-5xl md:text-7xl font-black jdm-font mb-4 tracking-tighter">TOTAL TECHNOLOGY</h1>
+                    <p class="text-spoon-yellow text-xl md:text-2xl font-bold uppercase mb-8">Engineering for the pure racing spirit.</p>
+                    <button onclick="showPage('catalog')" class="bg-spoon-yellow text-spoon-blue px-10 py-4 font-black uppercase text-lg hover:scale-105 transition-transform">Lihat Produk</button>
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="max-w-7xl mx-auto py-16 px-4">
+                <h2 class="text-3xl font-black jdm-font mb-10 border-l-8 border-spoon-blue pl-4 italic">Kategori Populer</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="bg-white p-8 text-center border-b-4 border-transparent hover:border-spoon-blue cursor-pointer transition shadow-sm">
+                        <i class="fa-solid fa-circle-dot text-4xl mb-4 text-spoon-blue"></i>
+                        <h3 class="font-bold uppercase text-sm">Velg (Wheels)</h3>
+                    </div>
+                    <div class="bg-white p-8 text-center border-b-4 border-transparent hover:border-spoon-blue cursor-pointer transition shadow-sm">
+                        <i class="fa-solid fa-gauge-high text-4xl mb-4 text-spoon-blue"></i>
+                        <h3 class="font-bold uppercase text-sm">Mesin (Engine)</h3>
+                    </div>
+                    <div class="bg-white p-8 text-center border-b-4 border-transparent hover:border-spoon-blue cursor-pointer transition shadow-sm">
+                        <i class="fa-solid fa-shield-halved text-4xl mb-4 text-spoon-blue"></i>
+                        <h3 class="font-bold uppercase text-sm">Rem (Brakes)</h3>
+                    </div>
+                    <div class="bg-white p-8 text-center border-b-4 border-transparent hover:border-spoon-blue cursor-pointer transition shadow-sm">
+                        <i class="fa-solid fa-wind text-4xl mb-4 text-spoon-blue"></i>
+                        <h3 class="font-bold uppercase text-sm">Knalpot (Exhaust)</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Catalog Page -->
+        <section id="page-catalog" class="page-content hidden py-12">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="flex flex-col md:flex-row gap-8">
+                    <!-- Filters -->
+                    <aside class="w-full md:w-64 space-y-8">
+                        <div>
+                            <h3 class="font-black uppercase mb-4 text-spoon-blue underline decoration-yellow-400 decoration-4">Cek Kompatibilitas</h3>
+                            <div class="space-y-4">
+                                <select class="w-full p-3 border border-gray-300 rounded-none bg-white text-sm focus:outline-none focus:ring-2 focus:ring-spoon-blue">
+                                    <option>Pilih Model Mobil</option>
+                                    <option>Civic Type R (FL5)</option>
+                                    <option>Civic Type R (FK8)</option>
+                                    <option>S2000 (AP1/AP2)</option>
+                                    <option>Integra Type R (DC2)</option>
+                                </select>
+                                <select class="w-full p-3 border border-gray-300 rounded-none bg-white text-sm">
+                                    <option>Pilih Tahun</option>
+                                    <option>2023+</option>
+                                    <option>2017-2022</option>
+                                </select>
+                                <button class="w-full bg-spoon-blue text-white py-3 font-bold uppercase text-xs">Cari Part</button>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <!-- Product Grid -->
+                    <div class="flex-1">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="product-list">
+                            <!-- Items injected by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cart Page -->
+        <section id="page-cart" class="page-content hidden py-12">
+            <div class="max-w-3xl mx-auto px-4">
+                <h2 class="text-3xl font-black jdm-font mb-8">Keranjang Belanja</h2>
+                <div id="cart-items" class="bg-white shadow-md p-6 space-y-6">
+                    <!-- Cart items injected here -->
+                </div>
+                <div class="mt-8 bg-white p-6 shadow-md border-t-4 border-spoon-blue">
+                    <div class="flex justify-between text-xl font-black mb-4">
+                        <span>TOTAL</span>
+                        <span id="cart-total">Rp 0</span>
+                    </div>
+                    <button class="w-full bg-spoon-blue text-white py-4 font-black uppercase text-lg hover:bg-opacity-90" onclick="processCheckout()">Lanjut ke Pembayaran</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Login Page -->
+        <section id="page-login" class="page-content hidden py-20">
+            <div class="max-w-md mx-auto bg-white p-10 shadow-2xl border-t-8 border-spoon-blue">
+                <h2 class="text-3xl font-black jdm-font mb-6 text-center italic">ADMIN LOGIN</h2>
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-xs font-bold uppercase mb-2">Alamat Email</label>
+                        <input type="email" class="w-full p-3 border border-gray-300 rounded-none focus:ring-2 focus:ring-spoon-blue outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase mb-2">Kata Sandi</label>
+                        <input type="password" class="w-full p-3 border border-gray-300 rounded-none focus:ring-2 focus:ring-spoon-blue outline-none">
+                    </div>
+                    <button class="w-full bg-spoon-blue text-white py-4 font-black uppercase hover:bg-opacity-90" onclick="alert('Demo Mode: Login Berhasil')">Masuk Sekarang</button>
+                    <div class="text-center text-xs text-gray-500 uppercase tracking-widest mt-4">Atau Masuk Dengan</div>
+                    <div class="grid grid-cols-2 gap-4 mt-4">
+                        <button class="border p-3 flex items-center justify-center hover:bg-gray-50"><i class="fa-brands fa-google mr-2"></i> Google</button>
+                        <button class="border p-3 flex items-center justify-center hover:bg-gray-50"><i class="fa-brands fa-apple mr-2"></i> Apple ID</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-carbon-grey text-white py-16 mt-20">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div>
+                <span class="text-4xl jdm-font italic font-black text-white">SPOON</span>
+                <span class="ml-2 px-2 py-1 bg-spoon-yellow text-spoon-blue font-bold text-xs rounded uppercase">Sports</span>
+                <p class="mt-6 text-gray-400 text-sm leading-relaxed">Penyedia suku cadang performa tinggi khusus Honda sejak 1988. Diuji di sirkuit, disempurnakan untuk jalanan.</p>
+            </div>
+            <div>
+                <h4 class="font-bold uppercase mb-6 text-spoon-yellow">Tautan Cepat</h4>
+                <ul class="space-y-3 text-sm text-gray-400">
+                    <li><a href="#" class="hover:text-white transition">Tentang Kami</a></li>
+                    <li><a href="#" class="hover:text-white transition">Kebijakan Pengiriman</a></li>
+                    <li><a href="#" class="hover:text-white transition">Lacak Pesanan</a></li>
+                    <li><a href="#" class="hover:text-white transition">FAQ Teknis</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold uppercase mb-6 text-spoon-yellow">Newsletter</h4>
+                <p class="text-xs text-gray-400 mb-4">Dapatkan update produk terbaru dan info balapan.</p>
+                <div class="flex">
+                    <input type="text" placeholder="Email Anda" class="bg-gray-800 border-none p-3 w-full text-sm outline-none">
+                    <button class="bg-spoon-blue px-6 font-bold uppercase text-xs">Daftar</button>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-xs">
+            © 2024 SPOON PERFORMANCE INDONESIA. SEMUA HAK DILINDUNGI.
+        </div>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-10 right-10 bg-spoon-blue text-white px-8 py-4 rounded-none shadow-2xl transform translate-y-20 opacity-0 transition-all duration-500 z-[100]">
+        Produk berhasil ditambahkan!
+    </div>
+
+    <script>
+        // Mock Data Produk
+        const products = [
+            {
+                id: 1,
+                name: "Spoon Monoblock Caliper Set",
+                price: 24500000,
+                image: "https://images.unsplash.com/photo-1486496146582-9ffcd0b2b2b7?auto=format&fit=crop&q=80&w=400",
+                category: "Brakes"
+            },
+            {
+                id: 2,
+                name: "SW388 Wheel 18x8.5 Matte Black",
+                price: 12500000,
+                image: "https://images.unsplash.com/photo-1551522435-a13afa10f103?auto=format&fit=crop&q=80&w=400",
+                category: "Wheels"
+            },
+            {
+                id: 3,
+                name: "Carbon Fiber Bonnet - Civic FL5",
+                price: 18900000,
+                image: "https://images.unsplash.com/photo-1592198084033-aade902d1aae?auto=format&fit=crop&q=80&w=400",
+                category: "Body"
+            },
+            {
+                id: 4,
+                name: "N1 Muffler Kit - Dual Exit",
+                price: 9800000,
+                image: "https://images.unsplash.com/photo-1549443224-f76150e7b8b2?auto=format&fit=crop&q=80&w=400",
+                category: "Exhaust"
+            },
+            {
+                id: 5,
+                name: "High Tension Ignition Coil",
+                price: 4200000,
+                image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=400",
+                category: "Engine"
+            },
+            {
+                id: 6,
+                name: "Progressive Spring Set",
+                price: 5600000,
+                image: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&q=80&w=400",
+                category: "Suspension"
+            }
+        ];
+
+        let cart = [];
+
+        // Inisialisasi Katalog
+        function renderCatalog() {
+            const container = document.getElementById('product-list');
+            container.innerHTML = products.map(p => `
+                <div class="product-card bg-white border border-gray-100 overflow-hidden group">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-spoon-yellow text-spoon-blue text-[10px] font-black px-3 py-1 uppercase italic shadow-md">Instock</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest font-bold mb-1">${p.category}</p>
+                        <h3 class="font-black text-sm uppercase mb-3 line-clamp-1">${p.name}</h3>
+                        <p class="text-spoon-blue font-black mb-6">Rp ${p.price.toLocaleString('id-ID')}</p>
+                        <button onclick="addToCart(${p.id})" class="w-full bg-spoon-blue text-white py-3 text-xs font-black uppercase hover:bg-black transition border-b-4 border-transparent active:border-spoon-yellow">
+                            Tambah ke Keranjang
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Navigasi Halaman
+        function showPage(pageId) {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.add('hidden'));
+            document.getElementById(`page-${pageId}`).classList.remove('hidden');
+            window.scrollTo(0,0);
+        }
+
+        // Logika Keranjang
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            cart.push(product);
+            updateCartUI();
+            showToast();
+        }
+
+        function updateCartUI() {
+            document.getElementById('cart-count').innerText = cart.length;
+            
+            const cartList = document.getElementById('cart-items');
+            if (cart.length === 0) {
+                cartList.innerHTML = `<p class="text-center text-gray-400 uppercase font-bold py-10">Keranjang Kosong</p>`;
+            } else {
+                cartList.innerHTML = cart.map((item, index) => `
+                    <div class="flex items-center gap-6 border-b pb-6 last:border-0 last:pb-0">
+                        <img src="${item.image}" class="w-20 h-20 object-cover">
+                        <div class="flex-1">
+                            <h4 class="font-bold text-sm uppercase">${item.name}</h4>
+                            <p class="text-xs text-gray-500 italic">${item.category}</p>
+                            <p class="text-spoon-blue font-black mt-1">Rp ${item.price.toLocaleString('id-ID')}</p>
+                        </div>
+                        <button onclick="removeFromCart(${index})" class="text-red-500 hover:scale-110"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                `).join('');
+            }
+
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            document.getElementById('cart-total').innerText = `Rp ${total.toLocaleString('id-ID')}`;
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        function processCheckout() {
+            if (cart.length === 0) {
+                alert("Keranjang masih kosong!");
+                return;
+            }
+            alert("Redirecting to Midtrans Payment Gateway...");
+        }
+
+        // On Load
+        window.onload = () => {
+            renderCatalog();
+        };
+    </script>
+</body>
+</html>
